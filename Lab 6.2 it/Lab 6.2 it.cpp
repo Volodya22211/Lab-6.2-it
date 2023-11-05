@@ -7,7 +7,7 @@ using namespace std;
 
 void printArray(int* arr, int size);
 void generateArray(int* arr, int size, int min, int max);
-int findSmallestIndex(const int* arr, int size);
+int findSmallestIndex(const int* arr, int size, int SmallestIndex, int SmallestNum);
 int main() {
 	const int arrSize = 10;
 	int a[arrSize];
@@ -16,7 +16,7 @@ int main() {
 	cout << "originalArray:        ";
 	printArray(a, arrSize);
 
-	int sm = findSmallestIndex(a, 10);
+	int sm = findSmallestIndex(a, 10, -1, INT_MAX);
 	cout << "SmallestIndex of Array: " << sm;
 
 }
@@ -36,16 +36,14 @@ void printArray(int* array, int size) {
 	cout << endl;
 }
 
-int findSmallestIndex(const int* arr, int size) {
-	int smallestOddIndex = -1;  
-	int smallestOdd = INT_MAX;  
+int findSmallestIndex(const int* arr, int size, int SmallestIndex, int SmallestNum) {
 
 	for (int i = 0; i < size; i++) {
-		if (!(arr[i] % 2 == 0) && arr[i] < smallestOdd) {  
-			smallestOddIndex = i;  
-			smallestOdd = arr[i];  
+		if (!(arr[i] % 2 == 0) && arr[i] < SmallestNum) {
+			SmallestIndex = i;
+			SmallestNum = arr[i];
 		}
 	}
 
-	return smallestOddIndex;
+	return SmallestIndex;
 }
